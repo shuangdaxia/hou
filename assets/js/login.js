@@ -29,7 +29,7 @@ $(function() {
             username: $('#form_reg [name=username]').val(),
             password: $('#form_reg [name=password]').val()
         }
-        $.post('/reguser', data, function(res) {
+        $.post('api/reguser', data, function(res) {
             if (res.status !== 0) {
                 //layui弹出动画
                 return layer.msg(res.message);
@@ -45,7 +45,7 @@ $(function() {
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/login',
+            url: 'api/login',
             data: $(this).serialize(),
             success: function(res) {
                 if (res.status !== 0) {
@@ -55,7 +55,7 @@ $(function() {
                 //console.log(res.token);
                 layer.msg(res.message);
                 //成功跳转到主页
-                //location.href = 'index.html';
+                location.href = 'index.html';
                 //将服务器返回的token保存在localStorage中
                 localStorage.setItem('token', res.token);
             }
