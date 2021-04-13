@@ -6,17 +6,17 @@ $.ajaxPrefilter(function(options) {
     if (options.url.indexOf('/my') !== -1) {
         options.headers = { 'Authorization': localStorage.getItem('token') || '' };
     }
-    //全局配置回调complete函数
-    options.complete = function(res) {
-        //console.log(res);
-        //res.responseJSON获取服务器响应的数据
-        if (res.responseJSON.status === 1) {
-            //清空本地存储
-            localStorage.removeItem('token');
-            //强制跳转到登录页面
-            location.href = '/login.html';
-        }
-    }
+    // //全局配置回调complete函数
+    // options.complete = function(res) {
+    //     //console.log(res);
+    //     //res.responseJSON获取服务器响应的数据
+    //     if (res.responseJSON.status === 1) {
+    //         //清空本地存储
+    //         localStorage.removeItem('token');
+    //         //强制跳转到登录页面
+    //         location.href = '/login.html';
+    //     }
+    // }
 
 
 })

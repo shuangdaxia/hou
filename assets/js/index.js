@@ -20,26 +20,26 @@ function getUserInfo() {
         type: "GET",
         url: 'my/userinfo',
         //配置头部信息
-        //headers: { 'Authorization': localStorage.getItem('token') || '' },
+        headers: { 'Authorization': localStorage.getItem('token') || '' },
         success: function(res) {
-                if (res.status !== 0) {
-                    return layui.layer.msg('获取失败');
-                }
-                //渲染头像方法
-                renderAvatar(res.data);
+            if (res.status !== 0) {
+                return layui.layer.msg('获取失败');
             }
-            //无论请求失败成功之后都会调用这个回调函数
-            /*complete: function(res) {
-                //console.log(res);
-                //res.responseJSON获取服务器响应的数据
-                if (res.responseJSON.status === 1) {
-                    //清空本地存储
-                    localStorage.removeItem('token');
-                    //强制跳转到登录页面
-                    location.href = '/login.html';
-                }
+            //渲染头像方法
+            renderAvatar(res.data);
+        },
+        //无论请求失败成功之后都会调用这个回调函数
+        complete: function(res) {
+            //console.log(res);
+            //res.responseJSON获取服务器响应的数据
+            if (res.responseJSON.status === 1) {
+                //清空本地存储
+                localStorage.removeItem('token');
+                //强制跳转到登录页面
+                location.href = '/login.html';
+            }
 
-            }*/
+        }
     });
 
 }
